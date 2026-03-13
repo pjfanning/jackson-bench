@@ -1,6 +1,7 @@
 package org.example.jackson;
 
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -14,8 +15,10 @@ public class DataInputBench extends BenchmarkLauncher {
     @Benchmark
     public void benchDataInput(Blackhole blackhole) throws IOException {
         try (JsonParser jp = JSON_FACTORY.createParser(new MockDataInput(json))) {
-            while(jp.hasCurrentToken()) {
-                blackhole.consume(jp.nextToken());
+            JsonToken token = jp.nextToken();
+            while(token != null) {
+                blackhole.consume(token);
+                token = jp.nextToken();
             }
         }
     }
@@ -23,8 +26,10 @@ public class DataInputBench extends BenchmarkLauncher {
     @Benchmark
     public void benchDataInputNew(Blackhole blackhole) throws IOException {
         try (JsonParser jp = JSON_FACTORY.createParserNew(new MockDataInput(json))) {
-            while(jp.hasCurrentToken()) {
-                blackhole.consume(jp.nextToken());
+            JsonToken token = jp.nextToken();
+            while(token != null) {
+                blackhole.consume(token);
+                token = jp.nextToken();
             }
         }
     }
@@ -32,8 +37,10 @@ public class DataInputBench extends BenchmarkLauncher {
     @Benchmark
     public void benchDataInputLimited(Blackhole blackhole) throws IOException {
         try (JsonParser jp = JSON_FACTORY.createParserLimited(new MockDataInput(json))) {
-            while(jp.hasCurrentToken()) {
-                blackhole.consume(jp.nextToken());
+            JsonToken token = jp.nextToken();
+            while(token != null) {
+                blackhole.consume(token);
+                token = jp.nextToken();
             }
         }
     }
