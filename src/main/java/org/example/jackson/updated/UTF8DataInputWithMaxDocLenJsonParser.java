@@ -1,6 +1,5 @@
 package org.example.jackson.updated;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.io.IOContext;
