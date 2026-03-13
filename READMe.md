@@ -2,5 +2,5 @@
 
 To Run:
 ```
-./gradelew jmh
+./gradlew jmh
 ```
