@@ -20,3 +20,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+jmhJar {
+    manifest {
+        attributes 'Multi-Release': 'true'
+    }
+}
+
+// see https://github.com/melix/jmh-gradle-plugin?tab=readme-ov-file#configuration-options
+jmh {
+    // includes = ['org.example.jackson.DataInputBench']
+}
