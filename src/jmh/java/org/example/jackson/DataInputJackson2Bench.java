@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Compares the parse time of 3 variants of UTF8DataInputJsonParser.
  */
-public class DataInputBench extends BenchmarkLauncher {
+public class DataInputJackson2Bench extends BenchmarkLauncher {
 
     private final String json = generateJSON(20000);
     private final ExtendedJsonFactory JSON_FACTORY = new ExtendedJsonFactory();
@@ -53,7 +53,7 @@ public class DataInputBench extends BenchmarkLauncher {
         }
     }
 
-    private String generateJSON(final int docLen) {
+    static String generateJSON(final int docLen) {
         final StringBuilder sb = new StringBuilder();
         sb.append("[");
 
