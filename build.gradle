@@ -30,5 +30,5 @@ jmhJar {
 
 // see https://github.com/melix/jmh-gradle-plugin?tab=readme-ov-file#configuration-options
 jmh {
-    includes = ['org.example.jackson.DataInputJackson3Bench']
+    includes = ['org.example.jackson.UTF8GenBench']
 }
