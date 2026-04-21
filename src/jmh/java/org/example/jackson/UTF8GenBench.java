@@ -22,12 +22,12 @@ import java.io.IOException;
  * <p>
  * Benchmark variants:
  * <ul>
- *   <li><b>LongAscii</b>  – 1 000 fields each with a 1 100-char pure-ASCII value; this is the
+ *   <li><b>LongAscii</b>  – 1,000 fields each with a 1,100-char pure-ASCII value; this is the
  *       primary workload that exercises the 4-char loop-unrolling fast path in the updated
  *       generator.</li>
- *   <li><b>ShortAscii</b> – 1 000 fields each with a 20-char pure-ASCII value; shows behaviour
+ *   <li><b>ShortAscii</b> – 1,000 fields each with a 20-char pure-ASCII value; shows behaviour
  *       when strings are too short to amortise unrolling overhead.</li>
- *   <li><b>Unicode</b>    – 1 000 fields each with a value that mixes ASCII and non-ASCII (Latin
+ *   <li><b>Unicode</b>    – 1,000 fields each with a value that mixes ASCII and non-ASCII (Latin
  *       Supplement) characters; exercises the non-fast-path UTF-8 encoding branch.</li>
  * </ul>
  */
@@ -203,7 +203,7 @@ public class UTF8GenBench extends BenchmarkLauncher {
         for (int i = 0; i < 100; i++) {
             sb.append("abcdefghijk");
         }
-        return sb.toString(); // 1 100 ASCII chars
+        return sb.toString(); // 1,100 ASCII chars
     }
 
     static String generateShortAsciiValue() {
