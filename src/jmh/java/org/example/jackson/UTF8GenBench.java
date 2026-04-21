@@ -27,7 +27,7 @@ public class UTF8GenBench extends BenchmarkLauncher {
     // this tests the jackson-core 3.1.2 UTF8JsonGenerator
     @Benchmark
     public void benchExistingGenerator(Blackhole blackhole) throws IOException {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream(16 * 1024);
         JsonGenerator generator = new tools.jackson.core.json.UTF8JsonGenerator(
                 ObjectWriteContext.empty(), ioc, 0, 0, bytes,
                 JsonFactory.DEFAULT_ROOT_VALUE_SEPARATOR, null, null,
@@ -44,12 +44,13 @@ public class UTF8GenBench extends BenchmarkLauncher {
 
         generator.flush();
         generator.close();
+        blackhole.consume(bytes.toByteArray());
     }
 
     // this tests the jackson-core 3.1.2 UTF8JsonGenerator
     @Benchmark
     public void benchUpdatedGenerator(Blackhole blackhole) throws IOException {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream(16 * 1024);
         JsonGenerator generator = new org.example.jackson3.updated.UTF8JsonGenerator(
                 ObjectWriteContext.empty(), ioc, 0, 0, bytes,
                 JsonFactory.DEFAULT_ROOT_VALUE_SEPARATOR, null, null,
@@ -66,6 +67,7 @@ public class UTF8GenBench extends BenchmarkLauncher {
 
         generator.flush();
         generator.close();
+        blackhole.consume(bytes.toByteArray());
     }
 
     static IOContext testIOContext() {
