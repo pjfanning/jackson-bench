@@ -1,5 +1,7 @@
 package org.example.jackson;
 
+import org.example.jackson3.updated.SwarSmileFactory;
+import org.example.jackson3.updated.SwarSmileParser;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 import tools.jackson.dataformat.smile.SmileMapper;
@@ -17,6 +19,9 @@ public class SmileDoubleArrayBench extends BenchmarkLauncher {
 
     private static final SmileMapper MAPPER = new SmileMapper();
 
+    /** Same mapper, but its factory hands out {@link SwarSmileParser} for byte[] input. */
+    private static final SmileMapper SWAR_MAPPER = SmileMapper.builder(new SwarSmileFactory()).build();
+
     /** The values the encoded document holds; kept for verification/sanity checks. */
     static final double[] DOUBLES;
 
@@ -31,6 +36,17 @@ public class SmileDoubleArrayBench extends BenchmarkLauncher {
     @Benchmark
     public void benchParseFromByteArray(Blackhole blackhole) {
         blackhole.consume(MAPPER.readValue(SMILE_DOC, double[].class));
+    }
+
+    /**
+     * Same input through {@link SwarSmileParser}. Expect parity, not a speed-up: PR #757
+     * only touches property-name quad decoding, and a document that is one big array of
+     * doubles has no property names. Kept as a no-regression check; the arm that can
+     * actually move is in {@link SmileNameDecodeBench}.
+     */
+    @Benchmark
+    public void benchParseFromByteArraySwar(Blackhole blackhole) {
+        blackhole.consume(SWAR_MAPPER.readValue(SMILE_DOC, double[].class));
     }
 
     /**

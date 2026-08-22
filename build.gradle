@@ -35,5 +35,6 @@ jmhJar {
 jmh {
     includes = [//'org.example.jackson.UTF8GenBench',
                 'org.example.jackson.SmileDoubleArrayBench',
-                'org.example.jackson.CBORDoubleArrayBench']
+                'org.example.jackson.CBORDoubleArrayBench',
+                'org.example.jackson.SmileNameDecodeBench']
 }
