@@ -35,11 +35,6 @@ public class CBORDoubleArrayBench extends BenchmarkLauncher {
         blackhole.consume(MAPPER.readValue(CBOR_DOC, double[].class));
     }
 
-    @Benchmark
-    public void benchParseFromInputStream(Blackhole blackhole) {
-        blackhole.consume(MAPPER.readValue(new ByteArrayInputStream(CBOR_DOC), double[].class));
-    }
-
     /**
      * Deterministic (seeded LCG) mix of small, large and fractional values so the encoder
      * cannot collapse the array into a single repeated value.
