@@ -33,8 +33,7 @@ jmhJar {
 
 // see https://github.com/melix/jmh-gradle-plugin?tab=readme-ov-file#configuration-options
 jmh {
-    includes = [//'org.example.jackson.UTF8GenBench',
-                'org.example.jackson.SmileDoubleArrayBench',
-                'org.example.jackson.CBORDoubleArrayBench',
-                'org.example.jackson.SmileNameDecodeBench']
+    // NOTE: the plugin joins this list with ',' into a SINGLE JMH filter argument, so a
+    // multi-element list matches nothing -- keep it to one regex, alternating if needed.
+    includes = ['.*(CBOR|Smile).*']
 }
