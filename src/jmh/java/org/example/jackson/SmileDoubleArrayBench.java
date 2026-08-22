@@ -4,8 +4,6 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 import tools.jackson.dataformat.smile.SmileMapper;
 
-import java.io.ByteArrayInputStream;
-
 /**
  * Measures Smile parsing throughput when databinding a large array of doubles.
  * <p>
@@ -15,7 +13,7 @@ import java.io.ByteArrayInputStream;
  */
 public class SmileDoubleArrayBench extends BenchmarkLauncher {
 
-    private static final int DOUBLE_COUNT = 1_000;
+    private static final int DOUBLE_COUNT = 100_000;
 
     private static final SmileMapper MAPPER = new SmileMapper();
 
