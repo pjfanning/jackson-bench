@@ -35,5 +35,6 @@ jmhJar {
 jmh {
     // NOTE: the plugin joins this list with ',' into a SINGLE JMH filter argument, so a
     // multi-element list matches nothing -- keep it to one regex, alternating if needed.
-    includes = ['.*(CBOR|Smile).*']
+    includes = ['.*(Smile).*']
+    //includes = ['.*(CBOR|Smile).*']
 }
