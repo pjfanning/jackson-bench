@@ -16,6 +16,8 @@ dependencies {
     implementation 'tools.jackson.core:jackson-databind:3.2.2'
     implementation 'tools.jackson.dataformat:jackson-dataformat-smile:3.2.2'
     implementation 'tools.jackson.dataformat:jackson-dataformat-cbor:3.2.2'
+    implementation 'tools.jackson.dataformat:jackson-dataformat-protobuf:3.2.2'
+    implementation 'tools.jackson.dataformat:jackson-dataformat-avro:3.2.2'
     testImplementation platform('org.junit:junit-bom:6.1.3')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -36,5 +38,5 @@ jmh {
     // NOTE: the plugin joins this list with ',' into a SINGLE JMH filter argument, so a
     // multi-element list matches nothing -- keep it to one regex, alternating if needed.
     includes = ['.*(Smile).*']
-    //includes = ['.*(CBOR|Smile).*']
+    //includes = ['.*(CBOR|Smile|Protobuf|Avro).*']
 }
